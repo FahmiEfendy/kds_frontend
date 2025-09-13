@@ -1,0 +1,29 @@
+[
+  {
+    "id": "group-menu-1",
+    "name": "Main Navigation",
+    "menuList": [
+      { "id": "menu-1", "name": "Dashboard" },
+      { "id": "menu-2", "name": "Reports" },
+      { "id": "menu-3", "name": "Analytics" }
+    ]
+  },
+  {
+    "id": "group-menu-2",
+    "name": "User Management",
+    "menuList": [
+      { "id": "menu-4", "name": "Users" },
+      { "id": "menu-5", "name": "Roles" },
+      { "id": "menu-6", "name": "Permissions" }
+    ]
+  },
+  {
+    "id": "group-menu-3",
+    "name": "Content",
+    "menuList": [
+      { "id": "menu-7", "name": "Posts" },
+      { "id": "menu-8", "name": "Categories" },
+      { "id": "menu-9", "name": "Tags" }
+    ]
+  }
+]
