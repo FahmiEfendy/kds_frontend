@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   Button,
+  Container,
   Divider,
   FormControl,
   Grid,
@@ -69,7 +70,7 @@ const SettingPage = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ padding: "2rem" }}>
+      <Container sx={{ padding: "2rem" }}>
         {/* Menu Group */}
         <Grid container spacing={4}>
           <Grid size={{ xs: 12, md: 6 }}>
@@ -134,7 +135,7 @@ const SettingPage = () => {
               <FormControl fullWidth sx={{ marginBottom: 2 }}>
                 <InputLabel>Select Group</InputLabel>
                 <Select
-                  value={selectedGroupId}
+                  value={selectedGroupId || ""}
                   label="Select Group"
                   onChange={(e) => selectGroupHandler(e.target.value || "")}
                 >
@@ -204,7 +205,7 @@ const SettingPage = () => {
             </Paper>
           </Grid>
         </Grid>
-      </Box>
+      </Container>
     </>
   );
 };

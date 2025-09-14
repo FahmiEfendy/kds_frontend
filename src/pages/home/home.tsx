@@ -16,7 +16,7 @@ const HomePage = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4">
+        <Typography variant="h4" sx={{ textAlign: "center" }}>
           Welcome to Content Management System!
         </Typography>
       </Container>

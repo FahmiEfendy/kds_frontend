@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
+import { RootState } from "../../store";
 import users from "../../data/users.json";
 import { login } from "../../store/authSlice";
 
@@ -15,6 +17,8 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<FormValues>();
+
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const submitHandler = (data: FormValues) => {
     const username = data?.username;
@@ -32,13 +36,19 @@ const LoginPage = () => {
 
     if (loggedUser) {
       dispatch(login({ username }));
-      navigate("/");
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  });
 
   return (
     <Container
       maxWidth="sm"
+      disableGutters
       sx={{
         minHeight: "100vh",
         display: "flex",
@@ -47,39 +57,39 @@ const LoginPage = () => {
         alignContent: "center",
       }}
     >
-      <form onSubmit={handleSubmit(submitHandler)}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            minWidth: "100%",
-            gap: 3,
-            padding: "3rem",
-            border: "1px solid black",
-            borderRadius: "1rem",
-          }}
-        >
-          <Typography variant="h4" sx={{ textAlign: "center" }}>
-            Login
-          </Typography>
-          <TextField
-            required
-            label="Username"
-            placeholder="Enter your username..."
-            {...register("username")}
-          />
-          <TextField
-            required
-            label="Password"
-            type="password"
-            placeholder="Enter your password..."
-            {...register("password")}
-          />
-          <Button variant="contained" type="submit">
-            Login
-          </Button>
-        </Box>
-      </form>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(submitHandler)}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          gap: 3,
+          padding: "3rem",
+          border: "1px solid black",
+          borderRadius: "1rem",
+        }}
+      >
+        <Typography variant="h4" sx={{ textAlign: "center" }}>
+          Login
+        </Typography>
+        <TextField
+          required
+          label="Username"
+          placeholder="Enter your username..."
+          {...register("username")}
+        />
+        <TextField
+          required
+          label="Password"
+          type="password"
+          placeholder="Enter your password..."
+          {...register("password")}
+        />
+        <Button variant="contained" type="submit">
+          Login
+        </Button>
+      </Box>
     </Container>
   );
 };

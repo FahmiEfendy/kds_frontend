@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -15,11 +16,12 @@ import {
   Typography,
 } from "@mui/material";
 
+import { RootState } from "../store";
 import { pages } from "../constants/pages";
 import { options } from "../constants/options";
 
 const Navbar = () => {
-  const username = localStorage.getItem("username");
+  const username = useSelector((state: RootState) => state.auth.username);
 
   const navigate = useNavigate();
 
@@ -113,6 +115,7 @@ const Navbar = () => {
               flexDirection: "row",
               alignItems: "center",
               gap: 2,
+              marginRight: { xs: "2rem", md: "5rem" },
             }}
           >
             <Typography>Hello, {username}!</Typography>
